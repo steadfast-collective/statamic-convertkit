@@ -15,5 +15,8 @@
                 "SteadfastCollective\\Convertkit\\ServiceProvider"
             ]
         }
+    },
+    "require": {
+        "convertkit/convertkitapi": "dev-master"
     }
 }
