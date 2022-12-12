@@ -3,11 +3,13 @@
 namespace SteadfastCollective\ConvertKit;
 
 use Statamic\Facades\CP\Nav;
+use Statamic\Events\FormSubmitted;
 use Illuminate\Support\Facades\Route;
 use Statamic\Providers\AddonServiceProvider;
 use SteadfastCollective\ConvertKit\Library\ConvertKit;
 use SteadfastCollective\ConvertKit\Http\Controllers\CP\SettingsController;
 use SteadfastCollective\ConvertKit\Http\Controllers\CP\ConvertKitController;
+use SteadfastCollective\ConvertKit\Listeners\PushFormDataToConvertKit;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -21,6 +23,12 @@ class ServiceProvider extends AddonServiceProvider
 
     protected $stylesheets = [
         __DIR__.'/../resources/css/addon.css'
+    ];
+
+    protected $listen = [
+        FormSubmitted::class => [
+            PushFormDataToConvertKit::class
+        ]
     ];
 
     public function bootAddon()

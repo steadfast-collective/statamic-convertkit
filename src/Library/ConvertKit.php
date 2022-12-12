@@ -15,16 +15,16 @@ class ConvertKit
     {
         $this->secret = config('convertkit.secret');
         $this->key = config('convertkit.key');
-        $this->base = 'https://api.convertkit.com/v3/';
+        $this->base = 'https://api.convertkit.com/v3';
     }
 
     /**
      * Builds query for api requests
      * @param array $data additional data for request
      * @return array data
-     * @throws
+     * @throws Exception if no API key is present
      */
-    private function buildQuery(array $data = [])
+    private function buildQuery(array $data = []): array
     {
         if(!$this->key) {
             throw new Exception("No API key defined.");
@@ -37,7 +37,12 @@ class ConvertKit
         return array_merge($data, $base_data);
     }
 
-    public function getForms()
+    /**
+     * Gets forms from ConvertKit
+     * @return array
+     * @see https://developers.convertkit.com/#list-forms
+     */
+    public function getForms(): array
     {
         $response = Http::get("{$this->base}/forms", $this->buildQuery());
 
@@ -63,7 +68,12 @@ class ConvertKit
         return $forms;
     }
 
-    public function getTags()
+    /**
+     * Gets tags from ConvertKit
+     * @return array
+     * @see https://developers.convertkit.com/#list-tags
+     */
+    public function getTags(): array
     {
         $response = Http::get("{$this->base}/tags", $this->buildQuery());
 
@@ -89,7 +99,12 @@ class ConvertKit
         return $tags;
     }
 
-    public function getCustomFields()
+    /**
+     * Gets custom fields from ConvertKit
+     * @return array
+     * @see https://developers.convertkit.com/#list-fields
+     */
+    public function getCustomFields(): array
     {
         $response = Http::get("{$this->base}/custom_fields", $this->buildQuery());
 
@@ -118,5 +133,28 @@ class ConvertKit
         return $custom_fields;
     }
 
+    /**
+     * Send form data to ConvertKit
+     * @param int $form form ID
+     * @param array $subscriber_data data to be passed to convert kit
+     * @return boolean|array false on fail, array of subscriber data on success
+     */
+    public function addSubscriberToForm(int $form, array $subscriber_data): array
+    {
+        if(!$this->key) {
+            return false;
+        }
 
+        // Add api key to post data
+        $subscriber_data['api_key'] = $this->key;
+
+        $response = Http::post("{$this->base}/forms/{$form}/subscribe", $subscriber_data);
+
+        if($response->failed()) {
+            return false;
+        }
+
+        return $response->json();
+
+    }
 }
