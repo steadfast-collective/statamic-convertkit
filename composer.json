@@ -2,21 +2,18 @@
     "name": "steadfast-collective/convertkit",
     "autoload": {
         "psr-4": {
-            "SteadfastCollective\\Convertkit\\": "src"
+            "SteadfastCollective\\ConvertKit\\": "src"
         }
     },
     "extra": {
         "statamic": {
-            "name": "Convertkit",
-            "description": "Convertkit addon"
+            "name": "ConvertKit",
+            "description": "ConvertKit addon"
         },
         "laravel": {
             "providers": [
-                "SteadfastCollective\\Convertkit\\ServiceProvider"
+                "SteadfastCollective\\ConvertKit\\ServiceProvider"
             ]
         }
-    },
-    "require": {
-        "convertkit/convertkitapi": "dev-master"
     }
 }
