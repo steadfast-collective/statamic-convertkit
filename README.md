@@ -4,11 +4,9 @@
 
 ## Features
 Add Subscribers via Statamic forms.
-This addon does:
 
-- This
-- And this
-- And even this
+- Subscriber attributes can be mapped to form fields, or can be given custom values on a per-form basis.
+- Tags are pulled from ConvertKit, and are applied on a per-form basis, so all subscribers created via a particular form will have the same tag.
 
 ## How to Install
 
@@ -25,4 +23,15 @@ CONVERTKIT_KEY=your-key-here
 
 ## How to Use
 
-Here's where you can explain how to use this wonderful addon.
+A new menu entry will be added under "Tools", and you can set the field mapping per-form via this settings page.
+
+There's two fields you must fill out:
+- "Form" -  This is the form in ConvertKit new subscribers will be added to.
+- "Email" - Subscriber email address
+
+Other fields include:
+- "First Name" - Subscriber first name
+- "Tags" - Multi-checkbox select of existing tags within ConvertKit. New tags need to be added within ConvertKit.
+- "Custom Fields" - Gives ability to map form data to custom fields defined within ConvertKit.
+
+Not only can you map form data to the above fields, but you can also pass in a hardcoded custom value (this will apply to all subscribers who sign up using a specific form).
