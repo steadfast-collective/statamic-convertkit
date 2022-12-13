@@ -11,31 +11,20 @@ class ConvertKitController extends CpController
 {
     public function getForms()
     {
-        $value = Cache::remember('convertkit_forms', now()->addHours(3), function() {
-            $ck = new ConvertKit();
-            return $ck->getForms();
-        });
-
-        return $value;
+        $ck = new ConvertKit();
+        return $ck->getForms();
     }
 
     public function getTags()
     {
-        $value = Cache::remember('convertkit_tags', now()->addHours(3), function() {
-            $ck = new ConvertKit();
-            return $ck->getTags();
-        });
+        $ck = new ConvertKit();
+        return $ck->getTags();
 
-        return $value;
     }
 
     public function getCustomFields()
     {
-        $value = Cache::remember('convertkit_custom_fields', now()->addHours(3), function() {
-            $ck = new ConvertKit();
-            return $ck->getCustomFields();
-        });
-
-        return $value;
+        $ck = new ConvertKit();
+        return $ck->getCustomFields();
     }
 }
