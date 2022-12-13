@@ -35,3 +35,5 @@ Other fields include:
 - "Custom Fields" - Gives ability to map form data to custom fields defined within ConvertKit.
 
 Not only can you map form data to the above fields, but you can also pass in a hardcoded custom value (this will apply to all subscribers who sign up using a specific form).
+
+All configuration is stored as a `.yaml` file in `storage/statamic/addons/convertkit/convertkit_general.yaml`.
