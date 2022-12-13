@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\Http;
 class ConvertKit
 {
     private $key;
-    private $secret;
     protected string $base;
 
     public function __construct()
     {
-        $this->secret = config('convertkit.secret');
         $this->key = config('convertkit.key');
         $this->base = 'https://api.convertkit.com/v3';
     }

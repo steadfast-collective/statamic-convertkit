@@ -1,9 +1,9 @@
-# Convertkit
+# ConvertKit For Statamic
 
-> Convertkit is a Statamic addon that does something pretty neat.
+> "ConvertKit For Statamic" is a Statamic addon that integrates ConvertKit with Statamic Forms.
 
 ## Features
-
+Add Subscribers via Statamic forms.
 This addon does:
 
 - This
@@ -17,6 +17,11 @@ You can search for this addon in the `Tools > Addons` section of the Statamic co
 ``` bash
 composer require steadfast-collective/convertkit
 ```
+
+Add your ConvertKit API key to `.env`
+```
+CONVERTKIT_KEY=your-key-here
+``` 
 
 ## How to Use
 
