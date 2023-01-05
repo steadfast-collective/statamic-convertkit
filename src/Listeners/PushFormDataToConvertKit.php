@@ -75,14 +75,16 @@ class PushFormDataToConvertKit implements ShouldQueue
                 $form_id = $field['form_field'];
             } else {
                 if($field['convertkit_name'] === 'custom_field') {
-                    if($field['form_field'] === 'custom_value') {
-                        $val = $field['custom_value'];
-                    } else {
-                        $val = $form_data[$field['form_field']];
-                    }
+                    if(isset($field['custom_key'])) {
+                        if($field['form_field'] === 'custom_value') {
+                            $val = $field['custom_value'];
+                        } else {
+                            $val = $form_data[$field['form_field']];
+                        }
 
-                    if($val) {
-                        $data['fields'][$field['custom_key']] = $val;
+                        if($val) {
+                            $data['fields'][$field['custom_key']] = $val;
+                        }
                     }
                 } else {
                     if($field['form_field'] === 'custom_value') {
