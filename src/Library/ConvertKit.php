@@ -137,7 +137,7 @@ class ConvertKit
      * @param array $subscriber_data data to be passed to convert kit
      * @return boolean|array false on fail, array of subscriber data on success
      */
-    public function addSubscriberToForm(int $form, array $subscriber_data): array
+    public function addSubscriberToForm(int $form, array $subscriber_data): array|bool
     {
         if(!$this->key) {
             return false;
