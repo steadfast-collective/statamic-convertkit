@@ -17,12 +17,12 @@ class ServiceProvider extends AddonServiceProvider
         Fieldtypes\FormMapping::class,
     ];
 
-    protected $scripts = [
-        __DIR__ . '/../dist/js/addon.js',
-    ];
-
-    protected $stylesheets = [
-        __DIR__.'/../resources/css/addon.css'
+    protected $vite = [
+        'input' => [
+            'resources/js/addon.js',
+            'resources/css/addon.css',
+        ],
+        'publicDirectory' => 'resources/dist',
     ];
 
     protected $listen = [
