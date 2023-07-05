@@ -4,6 +4,7 @@ namespace SteadfastCollective\ConvertKit\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AddRefererToSessionStorage
 {
@@ -16,11 +17,14 @@ class AddRefererToSessionStorage
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!$request->session()->has('referer')) {
-            $request->session()->put(
-                'referer',
-                $request->headers->get('referer')
-            );
+        
+        if(!Str::contains($request->headers->get('referer'), $request->getHost())) {
+            if(!$request->session()->has('referer')) {
+                $request->session()->put(
+                    'referer',
+                    $request->headers->get('referer')
+                );
+            }
         }
 
         return $next($request);

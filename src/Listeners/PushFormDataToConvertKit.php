@@ -80,7 +80,7 @@ class PushFormDataToConvertKit implements ShouldQueue
                         if($field['form_field'] === 'custom_value') {
                             $val = $field['custom_value'];
                         } elseif($field['form_field'] === 'HTTP_REFERER'){
-                            $val = Session::get('referer');
+                            $val = Session::get('referer') ?? '';
                         } else {
                             $val = $form_data[$field['form_field']];
                         }
