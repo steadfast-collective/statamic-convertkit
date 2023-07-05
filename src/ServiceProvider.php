@@ -7,9 +7,10 @@ use Statamic\Events\FormSubmitted;
 use Illuminate\Support\Facades\Route;
 use Statamic\Providers\AddonServiceProvider;
 use SteadfastCollective\ConvertKit\Library\ConvertKit;
+use SteadfastCollective\ConvertKit\Listeners\PushFormDataToConvertKit;
 use SteadfastCollective\ConvertKit\Http\Controllers\CP\SettingsController;
 use SteadfastCollective\ConvertKit\Http\Controllers\CP\ConvertKitController;
-use SteadfastCollective\ConvertKit\Listeners\PushFormDataToConvertKit;
+use SteadfastCollective\ConvertKit\Http\Middleware\AddRefererToSessionStorage;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -28,6 +29,12 @@ class ServiceProvider extends AddonServiceProvider
     protected $listen = [
         FormSubmitted::class => [
             PushFormDataToConvertKit::class
+        ]
+    ];
+
+    protected $middlewareGroups = [
+        'web' => [
+            AddRefererToSessionStorage::class
         ]
     ];
 

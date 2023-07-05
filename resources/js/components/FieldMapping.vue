@@ -17,6 +17,7 @@
                     <select v-if="field.convertkit_name != 'form'" class="input-text" v-model="field.form_field" @input="update" required>
                         <option v-for="(form_field, index) in form_fields" :key="index" :value="form_field.handle" v-text="form_field.display" />
                         <option value="custom_value" v-text="__('convertkit::settings.field_mapping.custom_value')" />
+                        <option value="HTTP_REFERER" v-text="__('convertkit::settings.field_mapping.http_referer')" />
                     </select>
                     <select v-else class="input-text" v-model="field.form_field" @input="update" required>
                         <option v-for="(form) in forms" :key="form.id" :value="form.id" v-text="form.name" />
@@ -148,8 +149,6 @@ export default {
             if(!this.tags.length) {
                 axios.get(cp_url('/convertkit/get-tags'))
                 .then(res => {
-                    console.log(typeof(res.data))
-
                     this.tags = res.data
                 })
                 .catch(err => {
@@ -162,7 +161,6 @@ export default {
             if(!this.custom_fields.length) {
                 axios.get(cp_url('/convertkit/get-custom-fields'))
                 .then(res => {
-                    console.log(typeof(res.data))
                     this.custom_fields = res.data
                 })
                 .catch(err => {
