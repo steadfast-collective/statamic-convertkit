@@ -17,6 +17,7 @@
                     <select v-if="field.convertkit_name != 'form'" class="input-text" v-model="field.form_field" @input="update" required>
                         <option v-for="(form_field, index) in form_fields" :key="index" :value="form_field.handle" v-text="form_field.display" />
                         <option value="custom_value" v-text="__('convertkit::settings.field_mapping.custom_value')" />
+                        <option value="HTTP_REFERER" v-text="__('convertkit::settings.field_mapping.http_referer')" />
                     </select>
                     <select v-else class="input-text" v-model="field.form_field" @input="update" required>
                         <option v-for="(form) in forms" :key="form.id" :value="form.id" v-text="form.name" />
@@ -52,7 +53,7 @@
                 </div>
 
                 <button v-if="field.can_remove" @click="removeField(index)" aria-label="Remove Field" class="absolute -right-1.5 top-[calc(50%-12px)] group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="bg-white w-6 h-6 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="fill-white w-6 h-6 text-gray-700 group-hover:fill-gray-200 transition-all">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 </button>
@@ -148,8 +149,6 @@ export default {
             if(!this.tags.length) {
                 axios.get(cp_url('/convertkit/get-tags'))
                 .then(res => {
-                    console.log(typeof(res.data))
-
                     this.tags = res.data
                 })
                 .catch(err => {
@@ -162,7 +161,6 @@ export default {
             if(!this.custom_fields.length) {
                 axios.get(cp_url('/convertkit/get-custom-fields'))
                 .then(res => {
-                    console.log(typeof(res.data))
                     this.custom_fields = res.data
                 })
                 .catch(err => {

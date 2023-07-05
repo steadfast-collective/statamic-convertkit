@@ -15,6 +15,7 @@ return [
         'form_field' => "Form Field",
         "add_field" => "Add Field",
         'custom_value' => "Custom Value",
-        'custom_field_key' => "Custom Field Name"
+        'custom_field_key' => "Custom Field Name",
+        'http_referer' => "HTTP Referer",
     ]
 ];

@@ -34,8 +34,8 @@
             <div class="publish-section-wrapper w-full min-w-0">
                 <div role="tabpanel"
                     class="publish-section w-full">
-                    <div class="publish-fields">
-                        <div class="form-group publish-field publish-field__api_token section-fieldtype field-w-full">
+                    <div class="publish-fields w-full">
+                        <div class="form-group publish-field publish-field__api_token section-fieldtype field-w-full bg-white w-full">
                             <div class="field-inner">
                                 <span class="publish-field-label">
                                     No API Key Detected! Please add <code>CONVERTKIT_KEY</code> to your <code>.env</code> file.

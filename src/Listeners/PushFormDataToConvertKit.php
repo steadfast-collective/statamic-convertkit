@@ -4,10 +4,11 @@ namespace SteadfastCollective\ConvertKit\Listeners;
 
 use Statamic\Facades\Site;
 use Statamic\Events\FormSubmitted;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use SteadfastCollective\ConvertKit\Library\ConvertKit;
 use SteadfastCollective\ConvertKit\Facades\ConvertKitStorage;
-use Illuminate\Queue\InteractsWithQueue;
 
 class PushFormDataToConvertKit implements ShouldQueue
 {
@@ -78,6 +79,8 @@ class PushFormDataToConvertKit implements ShouldQueue
                     if(isset($field['custom_key'])) {
                         if($field['form_field'] === 'custom_value') {
                             $val = $field['custom_value'];
+                        } elseif($field['form_field'] === 'HTTP_REFERER'){
+                            $val = Session::get('referer');
                         } else {
                             $val = $form_data[$field['form_field']];
                         }
