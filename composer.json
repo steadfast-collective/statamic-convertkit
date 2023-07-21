@@ -7,7 +7,7 @@
     },
     "extra": {
         "statamic": {
-            "name": "ConvertKit",
+            "name": "ConvertKit for Statamic",
             "description": "ConvertKit addon"
         },
         "laravel": {
