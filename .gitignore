@@ -1,4 +1,11 @@
+.DS_Store
+.phpunit.result.cache
+.php_cs.cache
+.php-cs-fixer.cache
+.idea
 node_modules
 vendor
-mix-manifest.json
-resources/dist/hot
+dist
+!dist/.gitkeep
+vite.hot
+.env
