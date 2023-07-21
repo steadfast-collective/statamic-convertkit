@@ -14,6 +14,18 @@
             "providers": [
                 "SteadfastCollective\\ConvertKit\\ServiceProvider"
             ]
+        },
+        "download-dist": {
+            "url": "https://github.com/steadfast-collective/convertkit/releases/download/{$version}/dist.tar.gz",
+            "path": "dist"
+        }
+    },
+    "require": {
+        "pixelfear/composer-dist-plugin": "^0.1.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
         }
     }
 }
