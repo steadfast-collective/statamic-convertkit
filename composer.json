@@ -14,6 +14,10 @@
             "providers": [
                 "SteadfastCollective\\ConvertKit\\ServiceProvider"
             ]
+        },
+        "download-dist": {
+            "url": "https://github.com/steadfast-collective/convertkit/releases/download/{$version}/dist.tar.gz",
+            "path": "dist"
         }
     },
     "require": {
