@@ -1,9 +1,9 @@
 # This workflow tags a release, builds front-end assets and sends various notifications & webhooks when a release has been created.
 
 # How it works:
-# 1. Create a git tag - `git tag <version number>`
-# 2. Push tags to the origin - `git push origin --tags`
-# 3. This Github Action will create a release, using the latest notes from the CHANGELOG.md file.
+# 1. Add release notes to the CHANGELOG.md file. Commit & push them up.
+# 2. Create a git tag and push it up - `git tag <version number> && git push origin --tags`
+# 3. This action will create a release, using the latest notes from the CHANGELOG.md file.
 # 4. It'll build the front-end assets and attach them to the release.
 # 5. Finally, it'll comment on the PRs & Issues mentioned in the changelog to let everyone know a release has been tagged.
 
