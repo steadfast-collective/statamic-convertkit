@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.4.2 (2023-07-21)
+
+Just trying to fix the release workflow! Tweaking 👨‍💻
+
 ## v1.4.1 (2023-07-21)
 
 ### What's new
