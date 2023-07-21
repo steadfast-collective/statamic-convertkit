@@ -5,7 +5,5 @@
 .idea
 node_modules
 vendor
-dist
-!dist/.gitkeep
 vite.hot
 .env
