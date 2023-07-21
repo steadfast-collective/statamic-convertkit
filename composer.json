@@ -15,5 +15,13 @@
                 "SteadfastCollective\\ConvertKit\\ServiceProvider"
             ]
         }
+    },
+    "require": {
+        "pixelfear/composer-dist-plugin": "^0.1.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
     }
 }
