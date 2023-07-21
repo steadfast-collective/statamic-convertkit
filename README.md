@@ -1,5 +1,7 @@
 # ConvertKit For Statamic
 
+**This addon is currently a work-in-progress.**
+
 > "ConvertKit For Statamic" is a Statamic addon that integrates ConvertKit with Statamic Forms.
 
 ## Features
@@ -19,7 +21,7 @@ composer require steadfast-collective/convertkit
 Add your ConvertKit API key to `.env`
 ```
 CONVERTKIT_KEY=your-key-here
-``` 
+```
 
 ## How to Use
 
