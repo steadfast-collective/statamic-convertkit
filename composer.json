@@ -1,5 +1,5 @@
 {
-    "name": "steadfast-collective/convertkit",
+    "name": "steadfast-collective/statamic-convertkit",
     "autoload": {
         "psr-4": {
             "SteadfastCollective\\ConvertKit\\": "src"
@@ -16,7 +16,7 @@
             ]
         },
         "download-dist": {
-            "url": "https://github.com/steadfast-collective/convertkit/releases/download/{$version}/dist.tar.gz",
+            "url": "https://github.com/steadfast-collective/statamic-convertkit/releases/download/{$version}/dist.tar.gz",
             "path": "dist"
         }
     },
