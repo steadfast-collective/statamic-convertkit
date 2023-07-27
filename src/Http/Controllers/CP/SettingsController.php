@@ -5,13 +5,14 @@ namespace SteadfastCollective\ConvertKit\Http\Controllers\CP;
 use Statamic\Facades\Site;
 use Statamic\Http\Controllers\CP\CpController;
 use SteadfastCollective\ConvertKit\Facades\ConvertKitStorage;
+use SteadfastCollective\ConvertKit\SettingsBlueprint;
 
 class SettingsController extends CpController
 {
     public function index()
     {
         $data = $this->getData();
-        $blueprint = $this->getBlueprint();
+        $blueprint = SettingsBlueprint::getBlueprint();
         $fields = $blueprint->fields()->addValues($data)->preProcess();
 
         $key = config('convertkit.key');
@@ -27,7 +28,7 @@ class SettingsController extends CpController
 
     public function store(\Illuminate\Http\Request $request)
     {
-        $blueprint = $this->getBlueprint();
+        $blueprint = SettingsBlueprint::getBlueprint();
 
         $fields = $blueprint->fields()->addValues($request->all());
         $fields->validate();
