@@ -13,8 +13,7 @@ class SettingsBlueprint extends Blueprint
     {
         return Blueprint::make()->setContents([
             'sections' => [
-                'api_token' => [
-                    'display' => __('convertkit::general.api-token.title'),
+                'main' => [
                     'fields' => [
                         [
                             'handle' => 'forms',
