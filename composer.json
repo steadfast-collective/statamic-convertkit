@@ -1,5 +1,5 @@
 {
-    "name": "steadfastcollective/statamic-convertkit",
+    "name": "steadfast-collective/statamic-convertkit",
     "autoload": {
         "psr-4": {
             "SteadfastCollective\\ConvertKit\\": "src"
