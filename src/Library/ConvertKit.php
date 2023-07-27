@@ -31,11 +31,11 @@ class ConvertKit
             throw new Exception('No API key defined.');
         }
 
-        $base_data = [
+        $baseData = [
             'api_key' => $this->key,
         ];
 
-        return array_merge($data, $base_data);
+        return array_merge($data, $baseData);
     }
 
     /**
@@ -88,7 +88,7 @@ class ConvertKit
             return [];
         }
 
-        $forms = [];
+        $tags = [];
 
         foreach ($data['tags'] as $tag) {
             $tags[$tag['id']] = [
@@ -120,8 +120,6 @@ class ConvertKit
         }
 
         $custom_fields = [];
-
-        ray($data);
 
         foreach ($data['custom_fields'] as $field) {
             $custom_fields[$field['id']] = [

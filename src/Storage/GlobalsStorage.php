@@ -18,31 +18,27 @@ class GlobalsStorage implements Storage
      * @param  Site  $site
      * @return array|Collection
      */
-    public static function getYaml(string $handle, SiteObject $site, bool $returnCollection = false)
+    public static function getYaml(string $handle, SiteObject $site, bool $returnCollection = false): array
     {
-        $path = storage_path(implode('/', [
-            'statamic/addons/convertkit',
-            self::prefix.'_'."{$handle}.yaml",
-        ]));
+        $path = static::getPath($handle);
 
         $data = YAML::parse(File::get($path));
 
-        $site_data = collect($data)->get($site->handle());
+        $siteData = collect($data)->get($site->handle());
 
         if ($returnCollection) {
-            return collect($site_data);
+            return collect($siteData);
         }
 
-        return collect($site_data)->toArray() ?: [];
+        return collect($siteData)->toArray() ?: [];
     }
 
     /**
      * Retrieve YAML data from storage but back up using the default site
      *
      * @param  Site  $site
-     * @return array
      */
-    public function getYamlWithBackup(string $handle, SiteObject $site, bool $returnCollection = false)
+    public function getYamlWithBackup(string $handle, SiteObject $site, bool $returnCollection = false): array
     {
         $storage = self::getYaml($handle, $site, true);
 
@@ -62,21 +58,24 @@ class GlobalsStorage implements Storage
      * Put YAML data into storage
      *
      * @param  Site  $site
-     * @return void
      */
-    public static function putYaml(string $handle, SiteObject $site, array $data)
+    public static function putYaml(string $handle, SiteObject $site, array $data): void
     {
-        $path = storage_path(implode('/', [
+        $path = static::getPath($handle);
+
+        $existingData = collect(YAML::parse(File::get($path)));
+
+        File::put(
+            $path,
+            YAML::dump($existingData->merge([$site->handle() => $data])->toArray())
+        );
+    }
+
+    protected static function getPath(string $handle): string
+    {
+        return storage_path(implode('/', [
             'statamic/addons/convertkit',
             self::prefix.'_'."{$handle}.yaml",
         ]));
-
-        $existing = collect(YAML::parse(File::get($path)));
-
-        $combined_data = $existing->merge([
-            "{$site->handle()}" => $data,
-        ]);
-
-        File::put($path, YAML::dump($combined_data->toArray()));
     }
 }

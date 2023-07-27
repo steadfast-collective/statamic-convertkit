@@ -28,8 +28,6 @@ class SettingsController extends CpController
 
     public function store(\Illuminate\Http\Request $request)
     {
-        $original_data = $this->getData();
-
         $blueprint = $this->getBlueprint();
 
         $fields = $blueprint->fields()->addValues($request->all());
@@ -37,21 +35,19 @@ class SettingsController extends CpController
 
         $data = $fields->process()->values()->toArray();
         $this->putData($data);
-
-        // PipedriveSettingsUpdated::dispatch('general', $original_data, $data);
     }
 
-    public function getBlueprint()
+    protected function getBlueprint()
     {
         return GeneralSettingsBlueprint::requestBlueprint();
     }
 
-    public function getData()
+    protected function getData()
     {
         return ConvertKitStorage::getYaml('general', Site::selected());
     }
 
-    public function putData($data)
+    protected function putData($data)
     {
         return ConvertKitStorage::putYaml('general', Site::selected(), $data);
     }

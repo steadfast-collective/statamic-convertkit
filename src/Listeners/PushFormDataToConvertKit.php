@@ -25,21 +25,21 @@ class PushFormDataToConvertKit implements ShouldQueue
             return;
         }
 
-        // Check if pipedrive is enabled for this form
-        $ck_settings = $this->isConvertKitEnabledForForm($event->submission->form()->handle());
+        // Check if ConvertKit is enabled for this form
+        $convertKitSettings = $this->isConvertKitEnabledForForm($event->submission->form()->handle());
 
-        if (! $ck_settings) {
+        if (! $convertKitSettings) {
             return;
         }
 
-        $data = $this->prepareData($event->submission->data(), $ck_settings);
+        $data = $this->prepareData($event->submission->data(), $convertKitSettings);
 
         if (! $data) {
             return;
         }
 
-        $ck = new ConvertKit();
-        $ck->addSubscriberToForm($data['form_id'], $data['data']);
+        $convertKit = new ConvertKit();
+        $convertKit->addSubscriberToForm($data['form_id'], $data['data']);
     }
 
     /**
@@ -63,7 +63,7 @@ class PushFormDataToConvertKit implements ShouldQueue
 
     public function prepareData($form_data, $settings)
     {
-        $form_id = null;
+        $formId = null;
         $data = [];
 
         foreach ($settings['mappings'] as $field) {
@@ -72,20 +72,20 @@ class PushFormDataToConvertKit implements ShouldQueue
             }
 
             if ($field['convertkit_name'] === 'form') {
-                $form_id = $field['form_field'];
+                $formId = $field['form_field'];
             } else {
                 if ($field['convertkit_name'] === 'custom_field') {
                     if (isset($field['custom_key'])) {
                         if ($field['form_field'] === 'custom_value') {
-                            $val = $field['custom_value'];
+                            $value = $field['custom_value'];
                         } elseif ($field['form_field'] === 'HTTP_REFERER') {
-                            $val = Session::get('referer') ?? '';
+                            $value = Session::get('referer') ?? '';
                         } else {
-                            $val = $form_data[$field['form_field']];
+                            $value = $form_data[$field['form_field']];
                         }
 
-                        if ($val) {
-                            $data['fields'][$field['custom_key']] = $val;
+                        if ($value) {
+                            $data['fields'][$field['custom_key']] = $value;
                         }
                     }
                 } else {
@@ -105,7 +105,7 @@ class PushFormDataToConvertKit implements ShouldQueue
         }
 
         return [
-            'form_id' => $form_id,
+            'form_id' => $formId,
             'data' => $data,
         ];
 

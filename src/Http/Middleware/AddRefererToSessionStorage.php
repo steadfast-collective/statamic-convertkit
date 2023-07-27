@@ -16,7 +16,6 @@ class AddRefererToSessionStorage
      */
     public function handle(Request $request, Closure $next)
     {
-
         if (! Str::contains($request->headers->get('referer'), $request->getHost())) {
             if (! $request->session()->has('referer')) {
                 $request->session()->put(

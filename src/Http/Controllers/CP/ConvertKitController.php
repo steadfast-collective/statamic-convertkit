@@ -9,23 +9,23 @@ class ConvertKitController extends CpController
 {
     public function getForms()
     {
-        $ck = new ConvertKit();
+        $convertKit = new ConvertKit();
 
-        return $ck->getForms();
+        return $convertKit->getForms();
     }
 
     public function getTags()
     {
-        $ck = new ConvertKit();
+        $convertKit = new ConvertKit();
 
-        return $ck->getTags();
+        return $convertKit->getTags();
 
     }
 
     public function getCustomFields()
     {
-        $ck = new ConvertKit();
+        $convertKit = new ConvertKit();
 
-        return $ck->getCustomFields();
+        return $convertKit->getCustomFields();
     }
 }
