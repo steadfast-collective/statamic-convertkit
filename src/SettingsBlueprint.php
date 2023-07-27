@@ -17,20 +17,6 @@ class SettingsBlueprint extends Blueprint
                     'display' => __('convertkit::general.api-token.title'),
                     'fields' => [
                         [
-                            'handle' => 'api_token',
-                            'field' => [
-                                'type' => 'section',
-                                'display' => __('convertkit::settings.api-token.title'),
-                                'instructions' => __('convertkit::settings.api-token.instruction'),
-                                'listable' => 'hidden',
-                                'antlers' => false,
-                                'icon' => 'section',
-                                'instructions_position' => 'above',
-                                'visibility' => 'visible',
-                                'always_save' => false,
-                            ],
-                        ],
-                        [
                             'handle' => 'forms',
                             'field' => [
                                 'type' => 'form_mapping',

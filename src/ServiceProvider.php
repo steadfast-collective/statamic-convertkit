@@ -38,6 +38,10 @@ class ServiceProvider extends AddonServiceProvider
 
     public function bootAddon()
     {
+        if (! config('convertkit.key')) {
+            return;
+        }
+
         $this->registerCpRoutes(function () {
             Route::resource('convertkit', SettingsController::class)->only([
                 'index', 'store',
