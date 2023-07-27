@@ -1,15 +1,15 @@
 <?php
 
-namespace SteadfastCollective\ConvertKit\Blueprints\CP;
+namespace SteadfastCollective\ConvertKit;
 
 use Statamic\Facades\Blueprint;
 
-class GeneralSettingsBlueprint extends Blueprint
+class SettingsBlueprint extends Blueprint
 {
     /**
      * {@inheritDoc}
      */
-    public static function requestBlueprint()
+    public static function getBlueprint()
     {
         return Blueprint::make()->setContents([
             'sections' => [

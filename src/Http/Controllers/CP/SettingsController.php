@@ -4,7 +4,6 @@ namespace SteadfastCollective\ConvertKit\Http\Controllers\CP;
 
 use Statamic\Facades\Site;
 use Statamic\Http\Controllers\CP\CpController;
-use SteadfastCollective\ConvertKit\Blueprints\CP\GeneralSettingsBlueprint;
 use SteadfastCollective\ConvertKit\Facades\ConvertKitStorage;
 
 class SettingsController extends CpController
@@ -35,11 +34,6 @@ class SettingsController extends CpController
 
         $data = $fields->process()->values()->toArray();
         $this->putData($data);
-    }
-
-    protected function getBlueprint()
-    {
-        return GeneralSettingsBlueprint::requestBlueprint();
     }
 
     protected function getData()
