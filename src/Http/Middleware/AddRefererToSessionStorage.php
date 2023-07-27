@@ -11,15 +11,14 @@ class AddRefererToSessionStorage
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
     {
-        
-        if(!Str::contains($request->headers->get('referer'), $request->getHost())) {
-            if(!$request->session()->has('referer')) {
+
+        if (! Str::contains($request->headers->get('referer'), $request->getHost())) {
+            if (! $request->session()->has('referer')) {
                 $request->session()->put(
                     'referer',
                     $request->headers->get('referer')

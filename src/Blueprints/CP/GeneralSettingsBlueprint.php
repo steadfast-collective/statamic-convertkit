@@ -2,15 +2,12 @@
 
 namespace SteadfastCollective\ConvertKit\Blueprints\CP;
 
-use Statamic\Facades\Form;
-use Illuminate\Support\Arr;
 use Statamic\Facades\Blueprint;
-use Statamic\Facades\AssetContainer;
 
 class GeneralSettingsBlueprint extends Blueprint
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function requestBlueprint()
     {
@@ -30,7 +27,7 @@ class GeneralSettingsBlueprint extends Blueprint
                                 'icon' => 'section',
                                 'instructions_position' => 'above',
                                 'visibility' => 'visible',
-                                'always_save' => false
+                                'always_save' => false,
                             ],
                         ],
                         [
@@ -49,7 +46,7 @@ class GeneralSettingsBlueprint extends Blueprint
                         ],
                     ],
                 ],
-            ]
+            ],
         ]);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace SteadfastCollective\ConvertKit\Facades;
 
-use SteadfastCollective\ConvertKit\Storage\GlobalsStorage;
 use Illuminate\Support\Facades\Facade;
+use SteadfastCollective\ConvertKit\Storage\GlobalsStorage;
 
 class ConvertKitStorage extends Facade
 {

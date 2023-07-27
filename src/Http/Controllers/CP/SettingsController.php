@@ -3,11 +3,9 @@
 namespace SteadfastCollective\ConvertKit\Http\Controllers\CP;
 
 use Statamic\Facades\Site;
-use Statamic\Facades\User;
-use Statamic\CP\Breadcrumbs;
 use Statamic\Http\Controllers\CP\CpController;
-use SteadfastCollective\ConvertKit\Facades\ConvertKitStorage;
 use SteadfastCollective\ConvertKit\Blueprints\CP\GeneralSettingsBlueprint;
+use SteadfastCollective\ConvertKit\Facades\ConvertKitStorage;
 
 class SettingsController extends CpController
 {
@@ -24,7 +22,7 @@ class SettingsController extends CpController
             'blueprint' => $blueprint->toPublishArray(),
             'values' => $fields->values(),
             'meta' => $fields->meta(),
-            'key' => $key
+            'key' => $key,
         ]);
     }
 

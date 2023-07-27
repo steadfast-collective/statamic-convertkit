@@ -22,7 +22,7 @@ class FormMapping extends Fieldtype
     /**
      * Pre-process the data before it gets sent to the publish page.
      *
-     * @param mixed $data
+     * @param  mixed  $data
      * @return array|mixed
      */
     public function preProcess($data)
@@ -33,14 +33,14 @@ class FormMapping extends Fieldtype
     /**
      * Process the data before it gets saved.
      *
-     * @param mixed $data
+     * @param  mixed  $data
      * @return array|mixed
      */
     public function process($data)
     {
         // strip out form fields data to not clog up the yaml
-        if(!empty($data)) {
-            foreach($data['selectedForms'] as $key => $value) {
+        if (! empty($data)) {
+            foreach ($data['selectedForms'] as $key => $value) {
                 unset($data['selectedForms'][$key]['fields']);
             }
         }
@@ -52,7 +52,7 @@ class FormMapping extends Fieldtype
     {
         $forms = [];
 
-        foreach(Form::all() as $form) {
+        foreach (Form::all() as $form) {
             $forms[$form->handle] = [
                 'label' => $form->title,
                 'value' => $form->handle,
@@ -71,9 +71,9 @@ class FormMapping extends Fieldtype
         $data = ConvertKitStorage::getYaml('general', Site::selected());
         $formSelected = false;
 
-        if(isset($data['forms']['selectedForms'])) {
-            foreach($data['forms']['selectedForms'] as $form) {
-                if($form['value'] === $handle) {
+        if (isset($data['forms']['selectedForms'])) {
+            foreach ($data['forms']['selectedForms'] as $form) {
+                if ($form['value'] === $handle) {
                     $formSelected = true;
                 }
             }

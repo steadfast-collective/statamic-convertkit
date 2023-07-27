@@ -2,41 +2,39 @@
 
 namespace SteadfastCollective\ConvertKit\Listeners;
 
-use Statamic\Facades\Site;
-use Statamic\Events\FormSubmitted;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use SteadfastCollective\ConvertKit\Library\ConvertKit;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Session;
+use Statamic\Events\FormSubmitted;
+use Statamic\Facades\Site;
 use SteadfastCollective\ConvertKit\Facades\ConvertKitStorage;
+use SteadfastCollective\ConvertKit\Library\ConvertKit;
 
 class PushFormDataToConvertKit implements ShouldQueue
 {
-
     use InteractsWithQueue;
 
     /**
-     * @param Statamic\Events\FormSubmitted $event
-     *
+     * @param  Statamic\Events\FormSubmitted  $event
      * @return void
      */
     public function handle(FormSubmitted $event)
     {
         // Check for pipedrive token
-        if(!config('convertkit.key')) {
+        if (! config('convertkit.key')) {
             return;
         }
 
         // Check if pipedrive is enabled for this form
         $ck_settings = $this->isConvertKitEnabledForForm($event->submission->form()->handle());
 
-        if(!$ck_settings) {
+        if (! $ck_settings) {
             return;
         }
 
         $data = $this->prepareData($event->submission->data(), $ck_settings);
 
-        if(!$data) {
+        if (! $data) {
             return;
         }
 
@@ -46,15 +44,16 @@ class PushFormDataToConvertKit implements ShouldQueue
 
     /**
      * Checks convertkit settings if integration is enabled
-     * @param string $handle Form Handle
+     *
+     * @param  string  $handle Form Handle
      * @return array|bool convertkit settings, or false
      */
     public function isConvertKitEnabledForForm(string $handle)
     {
         $settings = ConvertKitStorage::getYaml('general', Site::selected());
 
-        foreach($settings['forms']['selectedForms'] as $form) {
-            if($form['value'] === $handle) {
+        foreach ($settings['forms']['selectedForms'] as $form) {
+            if ($form['value'] === $handle) {
                 return $form;
             }
         }
@@ -67,37 +66,37 @@ class PushFormDataToConvertKit implements ShouldQueue
         $form_id = null;
         $data = [];
 
-        foreach($settings['mappings'] as $field) {
-            if(!$field['form_field'] && $field['convertkit_name'] === 'form' || !$field['form_field'] && $field['convertkit_name'] === 'email') {
+        foreach ($settings['mappings'] as $field) {
+            if (! $field['form_field'] && $field['convertkit_name'] === 'form' || ! $field['form_field'] && $field['convertkit_name'] === 'email') {
                 return false;
             }
 
-            if($field['convertkit_name'] === 'form') {
+            if ($field['convertkit_name'] === 'form') {
                 $form_id = $field['form_field'];
             } else {
-                if($field['convertkit_name'] === 'custom_field') {
-                    if(isset($field['custom_key'])) {
-                        if($field['form_field'] === 'custom_value') {
+                if ($field['convertkit_name'] === 'custom_field') {
+                    if (isset($field['custom_key'])) {
+                        if ($field['form_field'] === 'custom_value') {
                             $val = $field['custom_value'];
-                        } elseif($field['form_field'] === 'HTTP_REFERER'){
+                        } elseif ($field['form_field'] === 'HTTP_REFERER') {
                             $val = Session::get('referer') ?? '';
                         } else {
                             $val = $form_data[$field['form_field']];
                         }
 
-                        if($val) {
+                        if ($val) {
                             $data['fields'][$field['custom_key']] = $val;
                         }
                     }
                 } else {
-                    if($field['form_field'] === 'custom_value') {
+                    if ($field['form_field'] === 'custom_value') {
                         $data[$field['convertkit_name']] = $field['custom_value'];
                     } else {
                         $data[$field['convertkit_name']] = $form_data[$field['form_field']];
                     }
 
-                    if($field['convertkit_name'] === 'tags') {
-                        if(!empty($field['selected_tags'])) {
+                    if ($field['convertkit_name'] === 'tags') {
+                        if (! empty($field['selected_tags'])) {
                             $data[$field['convertkit_name']] = $field['selected_tags'];
                         }
                     }
@@ -107,7 +106,7 @@ class PushFormDataToConvertKit implements ShouldQueue
 
         return [
             'form_id' => $form_id,
-            'data' => $data
+            'data' => $data,
         ];
 
     }
