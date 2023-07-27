@@ -15,7 +15,7 @@ This addon integrates with Statamic Forms, allowing you to add subscribers to yo
 You can install this addon via composer:
 
 ``` bash
-composer require steadfast-collective/statamic-convertkit
+composer require steadfastcollective/statamic-convertkit
 ```
 
 Once installed, add your ConvertKit API key to your `.env`:
