@@ -12,7 +12,7 @@ class ConvertKit
 
     public function __construct()
     {
-        $this->key = config('convertkit.key');
+        $this->key = config('statamic-convertkit.key');
         $this->base = 'https://api.convertkit.com/v3';
     }
 

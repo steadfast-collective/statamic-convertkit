@@ -17,14 +17,14 @@ class GeneralSettingsBlueprint extends Blueprint
         return Blueprint::make()->setContents([
             'sections' => [
                 'api_token' => [
-                    'display' => __('convertkit::general.api-token.title'),
+                    'display' => __('statamic-convertkit::general.api-token.title'),
                     'fields' => [
                         [
                             'handle' => 'api_token',
                             'field' => [
                                 'type' => 'section',
-                                'display' => __('convertkit::settings.api-token.title'),
-                                'instructions' => __('convertkit::settings.api-token.instruction'),
+                                'display' => __('statamic-convertkit::settings.api-token.title'),
+                                'instructions' => __('statamic-convertkit::settings.api-token.instruction'),
                                 'listable' => 'hidden',
                                 'antlers' => false,
                                 'icon' => 'section',
@@ -37,8 +37,8 @@ class GeneralSettingsBlueprint extends Blueprint
                             'handle' => 'forms',
                             'field' => [
                                 'type' => 'form_mapping',
-                                'display' => __('convertkit::settings.forms.title'),
-                                'instructions' => __('convertkit::settings.forms.instruction'),
+                                'display' => __('statamic-convertkit::settings.forms.title'),
+                                'instructions' => __('statamic-convertkit::settings.forms.instruction'),
                                 'listable' => 'hidden',
                                 'antlers' => false,
                                 'icon' => 'text',
