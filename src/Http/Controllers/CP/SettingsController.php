@@ -17,9 +17,9 @@ class SettingsController extends CpController
         $blueprint = $this->getBlueprint();
         $fields = $blueprint->fields()->addValues($data)->preProcess();
 
-        $key = config('convertkit.key');
+        $key = config('statamic-convertkit.key');
 
-        return view('convertkit::cp.settings.general', [
+        return view('statamic-convertkit::cp.settings.general', [
             'title' => 'Settings | ConvertKit',
             'blueprint' => $blueprint->toPublishArray(),
             'values' => $fields->values(),

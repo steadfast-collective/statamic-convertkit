@@ -1,23 +1,23 @@
 <template>
     <div class="border rounded-lg p-2 shadow-sm">
-        {{ __('convertkit::settings.field_mapping.form_title', {'name': form.label}) }}
+        {{ __('statamic-convertkit::settings.field_mapping.form_title', {'name': form.label}) }}
 
         <div class="flex flex-col items-start">
             <div v-for="(field, index) in mappedFields" :key="index" class="w-full border p-1 my-1 rounded-lg relative grid grid-cols-2 gap-2 pr-2">
 
                 <div class="w-full">
-                    <label v-text="__('convertkit::settings.field_mapping.convertkit_field')" />
+                    <label v-text="__('statamic-convertkit::settings.field_mapping.convertkit_field')" />
                     <select class="input-text" v-model="field.convertkit_name" @input="update" :disabled="!field.can_remove" required>
                         <option v-for="(convertkit_field, index) in convertkit_fields" :key="index" :value="convertkit_field.value" v-text="convertkit_field.label" />
                     </select>
                 </div>
 
                 <div class="w-full">
-                    <label v-text="__('convertkit::settings.field_mapping.form_field')" />
+                    <label v-text="__('statamic-convertkit::settings.field_mapping.form_field')" />
                     <select v-if="field.convertkit_name != 'form'" class="input-text" v-model="field.form_field" @input="update" required>
                         <option v-for="(form_field, index) in form_fields" :key="index" :value="form_field.handle" v-text="form_field.display" />
-                        <option value="custom_value" v-text="__('convertkit::settings.field_mapping.custom_value')" />
-                        <option value="HTTP_REFERER" v-text="__('convertkit::settings.field_mapping.http_referer')" />
+                        <option value="custom_value" v-text="__('statamic-convertkit::settings.field_mapping.custom_value')" />
+                        <option value="HTTP_REFERER" v-text="__('statamic-convertkit::settings.field_mapping.http_referer')" />
                     </select>
                     <select v-else class="input-text" v-model="field.form_field" @input="update" required>
                         <option v-for="(form) in forms" :key="form.id" :value="form.id" v-text="form.name" />
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="w-full" v-if="field.convertkit_name == 'custom_field'">
-                    <label v-text="__('convertkit::settings.field_mapping.custom_field_key')" />
+                    <label v-text="__('statamic-convertkit::settings.field_mapping.custom_field_key')" />
                     <select class="input-text" v-model="field.custom_key" @input="update" required>
                         <option v-for="custom_field in custom_fields" :key="custom_field.id" :value="custom_field.key" v-text="custom_field.name" />
                     </select>
@@ -38,7 +38,7 @@
                         'col-span-2': field.convertkit_name != 'custom_field'
                     }"
                 >
-                    <label v-text="__('convertkit::settings.field_mapping.custom_value')" />
+                    <label v-text="__('statamic-convertkit::settings.field_mapping.custom_value')" />
                     <text-input v-model="field.custom_value" :placeholder="getPlaceholder(field)" />
                 </div>
 
@@ -58,7 +58,7 @@
                     </svg>
                 </button>
             </div>
-            <button @click="addField" class="btn inline-block ml-auto mr-0" v-text="__('convertkit::settings.field_mapping.add_field')"/>
+            <button @click="addField" class="btn inline-block ml-auto mr-0" v-text="__('statamic-convertkit::settings.field_mapping.add_field')"/>
         </div>
     </div>
 </template>
@@ -170,7 +170,7 @@ export default {
         },
 
         getPlaceholder(field) {
-            return __('convertkit::settings.field_mapping.custom_value');
+            return __('statamic-convertkit::settings.field_mapping.custom_value');
         }
     },
     mounted() {
